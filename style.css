@@ -1,0 +1,330 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ### Global variables ### */
+
+:root {
+  --BRL: url(/images/flags/used/br.svg);
+  --GBP: url(/images/flags/used/gb.svg);
+  --USD: url(/images/flags/used/us.svg);
+  --JPY: url(/images/flags/used/jp.svg);
+  --CAD: url(/images/flags/used/ca.svg);
+  --EUR: url(/images/flags/used/eu.svg);
+  --COP: url(/images/flags/used/co.svg);
+  --CNY: url(/images/flags/used/cn.svg);
+  --GHS: url(/images/flags/used/gh.svg);
+  --NGN: url(/images/flags/used/ng.svg);
+  --AUD: url(/images/flags/used/au.svg);
+  --EGP: url(/images/flags/used/eg.svg);
+
+  --lightgreen: #00b991;
+  --darkgreen: #009473;
+  --darkestgreen: #00382c;
+
+  --border: 4px solid #aaded3;
+}
+
+/* ### Utility class ### */
+
+.icon-GBP {
+  background-image: var(--GBP);
+}
+
+.icon-BRL {
+  background-image: var(--BRL);
+}
+
+.icon-JPY {
+  background-image: var(--JPY);
+}
+
+.icon-USD {
+  background-image: var(--USD);
+}
+
+.icon-CAD {
+  background-image: var(--CAD);
+}
+
+.icon-EUR {
+  background-image: var(--EUR);
+}
+
+.icon-COP {
+  background-image: var(--COP);
+}
+
+.icon-GHS {
+  background-image: var(--GHS);
+}
+
+.icon-NGN {
+  background-image: var(--NGN);
+}
+
+.icon-CNY {
+  background-image: var(--CNY);
+}
+
+.icon-AUD {
+  background-image: var(--AUD);
+}
+
+.icon-EGP {
+  background-image: var(--EGP);
+}
+
+body {
+  font-size: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--darkestgreen);
+  background-image: url(/images/bg.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+.main {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  align-content: center;
+}
+
+.page-title {
+  padding: 2rem 6rem;
+  color: var(--darkgreen);
+  border-bottom: var(--border);
+}
+
+.form-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* width: 66.666666%; */
+  /* padding: 2rem 6rem; */
+  background-color: #fff;
+}
+
+.currency-selectors {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  padding: 2rem 6rem;
+  border-block: var(--border);
+}
+
+.select-wrapper {
+  position: relative;
+  user-select: none;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.select:hover .options,
+.select:hover .select-trigger {
+  outline: 2px solid #00b991;
+  /* outline-offset: -2px; */
+}
+
+.options,
+.option {
+  margin: 0;
+  padding: 0;
+}
+
+.options {
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.options::-webkit-scrollbar {
+  display: none;
+}
+
+.options {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.select.open .options {
+  visibility: visible;
+  pointer-events: all;
+  height: 16rem;
+  overflow-y: scroll;
+  overflow-x: visible;
+}
+
+.list-item:nth-child(even) {
+  background-color: hsl(175, 27%, 94%);
+}
+
+.list-item:nth-child(odd) {
+  background-color: hsl(170, 27%, 98%);
+}
+
+.list-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: space-between;
+  line-height: 1;
+  padding: 0.5rem;
+  width: 15rem;
+  background-color: white;
+  transition: background-color 0.2s;
+}
+
+.option:hover {
+  background-color: var(--lightgreen);
+}
+
+[class^="icon-"] {
+  height: 2rem;
+  aspect-ratio: 4 / 3;
+  display: inline-block;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.label {
+  display: block;
+  pointer-events: none;
+}
+
+.converted {
+  text-align: right;
+  padding: 0.5rem;
+}
+
+.amount {
+  width: 100%;
+  padding: 0.5rem;
+  line-height: 1;
+  border: 0;
+  background-color: hsl(170, 27%, 98%);
+}
+
+.amount:focus-visible,
+.amount:hover {
+  outline: 2px solid #009473;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+  padding: 2rem 6rem;
+  border-top: var(--border);
+}
+
+.flex > * {
+  flex-basis: 100%;
+}
+
+.updated-on {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  line-height: 1;
+  font-size: 1rem;
+  color: #00382c;
+}
+
+.swap {
+  background-image: url(images/swap.svg);
+  background-color: transparent;
+  border: 0;
+  height: 1rem;
+  width: 1rem;
+}
