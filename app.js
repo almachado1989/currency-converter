@@ -75,7 +75,7 @@ function getFile(localPath, res, mimeType) {
 }
 
 var myHeaders = new Headers()
-myHeaders.append("apikey", "RWLF3Ed5KfTutt5FO6Qp0lTzgzUj2ZeJ")
+myHeaders.append("apikey", "")
 
 var requestOptions = {
   method: "GET",
